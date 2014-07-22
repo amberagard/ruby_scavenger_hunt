@@ -20,7 +20,7 @@
   # end
 # end
 
-#require 'matrix'
+require 'matrix'
 
 class MyVector < Vector
   def distance(v)
@@ -47,10 +47,20 @@ class MyVector < Vector
     distance_stash
   end
 
+  def coerce(other)
+    case other
+    when Numeric
+      return Vector::Scalar.new(other), self
+    else
+      raise TypeError "#{self.class} can't be coerced into #{other.class}"
+    end
+  end
+
+  def integer
+
+  end
+
 end
-
-
-
 
 #Notes:
 #don't need initialize b/c it is already in the Vector class
